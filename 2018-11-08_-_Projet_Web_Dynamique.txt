@@ -1,0 +1,43 @@
+﻿"Editor\ Font\ Size :" 18px.
+
+2018-11-09 - 09H00 :
+
+Contrôleur méthode paramètre
+
+require du contrôleur de le transformer en objet d'utilisé la petite flèche qui va chercher la méthode.
+
+URL1 pour le ? (voir Audio)
+URL2 pour le paramètre.
+
+Je fais un test d'existence de l'url et ensuite je fais une seconde vérification.
+La première est complète la seconde et plus courte car il n'y a pas le paramètre.
+
+"library" est le dossier qui contient des "fonctions".
+
+Vous avez un load c'est fondamêntal, ce contrôleur ce charge dans l'index mais pour allé chercher les vues il faut une fonctionnalité de loading. Si il n'y a pas de paramètre on met default.
+
+// PHASE 3 ".\03-DATA‑BASE"
+
+mvc
+category 3 col
+- id « index primary » « unsigned », « AI ».
+- name « varchar 120 »
+- image « varchar 120 »
+
+Artisant. « artisanat.jpg »
+informatique « info.jpg »
+Bien être  « bien-etre.jpg »
+Langues « langues.jpg »
+
+Social « social.jp »
+Économique « economique.jpg »
+Technique « technique.jpg »
+
+
+http://localhost:63342/01-structure/index.php?url=index/category
+
+.htaccess
+
+
+
+

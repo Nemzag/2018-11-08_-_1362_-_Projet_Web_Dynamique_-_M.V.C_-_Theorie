@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<!--
+ * Created by PhpStorm. * User: Nemzag aka Gazmen Arifi (Shkypi, 1979-09-30). * Date: 2019-03-11 * Time: 14:08-->
+<html lang="fr">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Meta Information's -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <meta name="description" content="Personnal website">
+    <meta name="subject" content="Web Dewelopmenth">
+    <meta name="keywords" content="">
+    <meta name="author" content="Gazmen Arifi / Газмен Арифи">
+    <meta name="birthday" content="1979-09-30" scheme="YYYY-MM-DD">
+    <meta name="reply-to" content="???????@???????.com">
+    <meta name="copyright" content="Gazmen Arifi / Газмен Арифи">
+    <meta name="date" content="2019-04-10" scheme="YYYY-MM-DD">
+    <meta name="hour" content="00:45" scheme="HH:mm">
+    <meta name="generator" content="PhpStorm 2019">
+    <!-- Title -->
+    <title>Projet web : Architecture M.V.C.</title>
+    <!-- Link’s favicon -->
+    <link rel="icon" href="assets/logo/TAOTRJ%C3%83Z%C3%8B_BV.png">
+    <!-- Link’s third party stylesheet  -->
+    <link rel="stylesheet" href="assets/css/prism/prism.css">
+    <link rel="stylesheet" href="assets/css/tocbot/tocbot.css">
+    <link rel="stylesheet" href="assets/css/Nemzag/nemzag-heading-numerotation.css">
+    <link rel="stylesheet" href="assets/css/prettify/prettify.css">
+    <!-- Syntaxic coloration on result -->
+    <!-- <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="assets/PrameVorgs/semantic-ui-css-master/semantic.min.css">
+    <!-- Link’s TableDatas stylesheet -->
+    <link rel="stylesheet" href="assets/js/data_tables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="assets/js/data_tables/DataTables-1.10.18/css/dataTables.semanticui.min.css">
+    <!-- Link’s personal stylesheet -->
+    <!-- <link rel="stylesheet" href="assets/css/Nemzag/base.css"> -->
+    <link rel="stylesheet" href="assets/css/Nemzag/ueb.css">
+    <!-- <link rel="stylesheet" href="assets/css/Nemzag/debug.css"> -->
+    <!-- Link’s Google Font's -->
+    <!-- Page own particular styles -->
+    <style>
+
+	body {
+	  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	  color: rgba(0, 0, 0, .87);
+
+	  font-size: 130%;
+	}
+
+	figure {
+	  margin: 0;
+	}
+
+	h1 {
+	  font-size: 230%;
+	}
+
+	h2 {
+	  font-size: 210%;
+	}
+
+	h2 a {
+	  color: inherit;
+	  text-decoration: underline;
+	  text-decoration-style: dotted;
+	}
+
+	fieldset.yellow h2 a {
+	  color: #ffffff;
+	  text-decoration: underline;
+	  text-decoration-style: dotted;
+	}
+
+	h3 {
+	  font-size: 190%;
+	  color: #FBBD08;
+	}
+
+	h3 a {
+	  color: #FBBD08;
+	  text-decoration: underline;
+	  text-decoration-style: dotted;
+	}
+
+	h4 {
+	  font-size: 170%;
+	  color: #ffc42f;
+	}
+
+	h4 a {
+	  color: #ffc42f;
+	  text-decoration: underline;
+	  text-decoration-style: dotted;
+	}
+
+
+	h5 {
+	  font-size: 150%;
+	}
+
+	h6 {
+	  font-size: 130%;
+	}
+
+	a:hover {
+	  text-decoration: underline;
+	  text-decoration-style: dotted;
+	}
+
+	figure img {
+	  width: 90%;
+	}
+
+	.texte-orange {
+	  color: rgb(240, 162, 46);
+	}
+
+	.bgc-orange {
+	  background-color: rgb(240, 162, 46);
+	}
+  </style>
+    <!-- jQuery -->
+    <script src="assets/js/jquery/jquery.js"></script>
+  </head>
+  <body id="body" class="js-toc-content">
+    <header>
+      <h1 id="titleH1Symfony">Projet web<br>
+        Architecture M.V.C.</h1>
+    </header>
+    <main id="main" class="ui container">
+      <article id="article">
+        <section id="#section-table-of-contents">
+          <fieldset class="ui segment">
+            <h2 id="title-h2-table-of-contents"> <a href="?#title-h2-table-of-contents">Table de's matière's :</a> </h2>
+            <div id="js-toc" class="js-toc"></div>
+          </fieldset>
+        </section>
+        <!-- Saut de ligne. -->
+        <div style="page-break-before:always"></div>
+        <!-- BEGIN PRINCIPAL CONTENT -->
+        <section id="section-principal">
+          <section>
+            <fieldset class="ui yellow inverted segment">
+              <h2 id="titleH2Introduction"><a href="?#title-h2-table-of-contents">Introduction</a></h2>
+              <p>Sujet et ana‑lyse</p>
+              <p>Structure</p>
+              <p>Base de données</p>
+            </fieldset>
+          </section>
+          <section>
+            <fieldset class="ui yellow inverted segment">
+              <h2 id="titleH2Etape01"> <a href="?#title-h2-table-of-contents">Etape 01</a></h2>
+              <big>
+                <ol>
+                  <li>Le template</li>
+                  <li>Le routeur</li>
+                  <li>Les contrôleurs</li>
+                  <li>Les vues</li>
+                </ol>
+              </big>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Le template</a></h3>
+                <p>Téléchager la version Bootstrap Material Design sur le site:</p>
+                <ul>
+                  <li><a href="https://fezvrasta.github.io/bootstrap-material-design/"
+
+                      target="_blank">https://fezvrasta.github.io/bootstrap-material-design/</a> </li>
+                </ul>
+                <p>Prenez la version compilée et copiez les fichiers nécessaires dans le dossier « asset ».<br>
+                  Ensuite, ajoutez en plus les fichiers <code class="language-javascript line-numbers">jquery.js</code> et <code
+
+                    class="language-javascript line-numbers">popper.mins.js</code> dans le dossier «&nbsp;<code
+
+                    class="language-powershell line-numbers">js</code>&nbsp;»</p>
+                <p>Ajoutez les liens vers les fichiers css et javascript pour le bon fonctionnement du<br>
+                  template.</p>
+                <p>Insérez une nav‑bar, un slider et un footer. Ensuite configurer au minimum le body pour y ajouter une structure Bootstrap.</p>
+                <p>Créez le fichier <code class="language-php">index.php</code> et recomposez le template avec deux requires.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Création du MainController</a></h3>
+                <p>Nous aurons besoins d’une classe mère (contrôleur principal) qui contiendra les fonctionnalités de base et le loading des vues.<br>
+                  Pour l’instant comme il s’agit tout simplement de comprendre le fonctionnement du M.V.C., elle contiendra seulement un message.<br>
+                  Ensuite instanciez la dans le fichier <code class="language-php">index.php</code></p>
+                <pre><code class="language-php line-numbers">&lt;?php
+/**
+  * MainController Class
+  */
+
+class MainController
+{
+	public function __construct()
+	{
+	echo
+		'&lt;h2&gt;Message from MainController Class&lt;/h2&gt;';
+	}
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Création d’un routeur</a></h3>
+                <h4><a href="?#title-h2-table-of-contents">Charger le bon contrôleur</a></h4>
+                <p>Le routeur aura pour objectif d’analyser la requête (U.R.L.) et de la décomposer en trois parties correspondantes au principe de l’orienté objet et du M.V.C. :<br>
+                  <code class="language-php">class/method/params</code> (controller/method/params).</p>
+                <p>Ce procédé permettra de cibler le bon contrôleur,<br>
+                  d’accéder à une de ses méthodes et éventuellement de passer un paramètre à celle-ci.</p>
+                <h6>Exemple:</h6>
+                <pre><code class="language-php line-numbers">url = category/viewone/5
+$Category-&gt;viewOne($id)</code></pre>
+                <p>Par défaut, nous placerons celui-ci sur l’<code class="language-powershell line-numbers">index.php</code> à la racine du site.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Ana‑lyse</a></h3>
+                <p>Pour récupérer des informations d’une U.R.L.,<br>
+                  on utilise un paramètre en H.‑T.M.L. et on récupère la valeur en P.H.P. avec le tableau associatif global <code
+
+                    class="language-php">$_GET[]</code>. </p>
+                <p>Afin de découper l’U.R.L. nous allons la nettoyer et la transformer en tableau.</p>
+                <ul>
+                  <li><code class="language-php line-numbers">explode()</code> pour la conversion en tableau,<br>
+                    <pre><code class="language-php line-numbers">explode ( string $delimiter , string $string [, int $limit = PHP_INT_MAX ] ) : array</code></pre>
+                  </li>
+                  <li><code class="language-php line-numbers">rtrim()</code> pour retirer le dernier slash éventuel,<br>
+                    <pre><code class="language-php line-numbers">rtrim ( string $str [, string $character_mask ] ) : string</code></pre>
+                  </li>
+                  <li><code class="language-php line-numbers">filter_var()</code> pour filter l’url (espaces, accents, caractères interdits…),<br>
+                    <pre><code class="language-php line-numbers">filter_var ( mixed $variable [, int $filter = FILTER_DEFAULT [, mixed $options ]] ) : mixed</code></pre>
+                  </li>
+                </ul>
+                <pre><code class="language-php line-numbers">$url = explode('/', rtrim(filter_var($_GET['url'],FILTER_SANITIZE_URL),'/'));</code></pre>
+                Pour accéder aux trois composants, il suffira d’utiliser le tableau <code
+
+                  class="language-php line-numbers">$url[]</code>. </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Exemple de base</a></h3>
+                <pre><code class="language-php line-numbers">$url = explode('/', rtrim(filter_var($_GET['url'], FILTER_SANITIZE_URL),'/'));
+
+require_once 'app/controller/' . $url[0] . '.php';
+
+$controller = new $url[0]();
+
+$method = $url[1];
+
+$controller-&gt;$method($url[2]);</code></pre>
+                <div class="ui segment" style="background-color: #FBBD08; color: white;">
+                  <p>Pour l’instant, ce script nécessite obligatoirement une url avec ses trois composants.<br>
+                    Dans cet exemple, on récupère le contrôleur avec son extension.<br>
+                    On instancie celui-ci dans <code class="language-php">$controller</code> et on récupère dans <code
+
+                      class="language-php">$method</code> le deuxième composant de l’U.R.L. (la méthode).<br>
+                    Enfin, on invoque la méthode et son paramètre sur l’objet <code
+
+                      class="language-php">$controller</code>. </p>
+                </div>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Création d’un contrôleur</a></h3>
+                <p>Pour la démonstration nous utiliserons qu’un seul contrôleur : <code
+
+                    class="language-powershell">sections.php</code>.<br>
+                  Nous y ajouterons deux méthodes pour tester le fonctionnement du projet.</p>
+                <pre><code class="language-php line-numbers">class News extends MainController
+{
+	public function __construct()
+
+		parent:: __construct();
+	}
+
+	public function view()
+	{
+		echo '&lt;h2&gt;Message from Sections Class with viewOne Method&lt;/h2&gt;';
+	}
+
+	public function viewOne($id)
+	{
+		echo '&lt;h2&gt;Message from Sections Class with viewOne Method and param: '.$id.'&lt;/h2&gt;';
+	}
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Exemple finalisé</a></h3>
+                <pre><code class="language-php line-numbers">if(isset($_GET['url'])) {
+                
+    $url = explode('/', rtrim($_GET['url'], '/'));
+
+	require_once 'app/controller/' . $url[0] . '.php';
+
+	$controller = new $url[0]();
+
+	if (isset($url[2])) {
+
+		$method = $url[1];
+
+		$controller-&gt;$method($url[2]);
+
+	} elseif (isset($url[1])) {
+
+		$method = $url[1];
+
+		$controller-&gt;$method();
+
+	}
+
+} else {
+
+	echo'&lt;h2&gt;Message from home page&lt;/h2&gt;';
+};</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le contrôleur par défaut « Index.php »</a></h3>
+                <p>Lors du premier accès sur le site ou lors d’un retour sur l’accueil,<br>
+                  nous devons disposer d’un contrôleur qui permettra d’afficher le contenu de la page d’accueil.<br>
+                  Il servira également de contrôleur par défaut.</p>
+                <pre><code class="language-php line-numbers">class Index extends MainController
+{
+	public function __construct()
+	{
+		parent:: __construct();
+	}
+
+	public function home()
+	{
+		echo '&lt;h2&gt;Message from home page&lt;/h2&gt;';
+	}
+  };</code></pre>
+                <p>Une fois créé, nous allons l’implémenter dans le fichier <code
+
+                    class="language-powershell">index.php</code> dans la clause <code
+
+                    class="language-php">else</code> de la condition.<br>
+                  Inclusion, instanciation et appel de la méthode.</p>
+                <pre><code class="language-php line-numbers">else {
+	require 'app/controller/index.php';
+  
+	$index = new Index();
+  
+	$index -&gt; home();
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Les vues</a></h3>
+                <p>Le rôle du contrôleur n’est pas d’afficher des textes,<br>
+                  mais bien de charger la vue adéquate et de lui passer des données si nécessaire.<br>
+                  Nous allons ajouter au projet une classe de loading qui se chargera de récupérer la vue souhaitée et par la suite, les modèles du projet.</p>
+                <p>Par exemple,<br>
+                  à la place de l’<code class="language-php">echo</code> dans la méthode <code
+
+                    class="language-php">home()</code> du contrôleur <code
+
+                    class="language-php">Index</code>,<br>
+                  nous souhaiterions avoir :</p>
+                <pre><code class="language-php line-numbers">public function home()
+{
+	$this-&gt;load-&gt;view('home');
+};</code></pre>
+                <p>Pour éviter d'instancier à chaque fois la classe de loading,<br>
+                  c’est le «&nbsp;<code class="language-php">MainController</code>&nbsp;» qui s’en chargera.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">La classe « Load »</a></h3>
+                <p>Elle prend deux paramètres,<br>
+                  le premier pour le nom de la vue à charger et le second par défaut s’il n’y a aucune donnée à lui passer. </p>
+                <pre><code class="language-php line-numbers">class Load
+{
+	public function view($viewName, $data = null)
+	{
+		require 'app/view/' . $viewName . '.php';
+	}
+};</code></pre>
+                <p>Dans le contrôleur <code class="language-php">Index</code> nous appellerons la vue comme ceci :</p>
+                <pre><code class="language-php line-numbers">$this-&gt;load-&gt;view ('home');</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le MainController</a></h3>
+                <p>Il va instancier la classe «&nbsp;<code class="language-php">Load</code>&nbsp;» dans l’objet <code
+
+                    class="language-php">$load</code>.<br>
+                  La visibilité «&nbsp;<code class="language-php">protected</code>&nbsp;» est obligatoire pour l’héritage de la classe.</p>
+                <pre><code class="language-php line-numbers">class MainController
+{
+	protected $load;
+
+	public function __construct()
+
+		$this -&gt; load = new Load();
+	}
+}</code></pre>
+              </div>
+            </fieldset>
+          </section>
+          <!-- Saut de ligne. -->
+          <div style="page-break-before:always"></div>
+          <section>
+            <fieldset class="ui yellow inverted segment">
+              <h2 id="titleH2Etape01"> <a href="?#title-h2-table-of-contents">Etape 02 : Les modèles</a></h2>
+              <big>
+                <ol>
+                  <li>Introduction</li>
+                  <li>Loading des modèles</li>
+                  <li>Récupérer des données d'un modele</li>
+                </ol>
+              </big>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Introduction</a></h3>
+                <p>Le rôle des modèles dans une architecture M.V.C. est de récupérer ou traiter les informations provenant de votre base de données.<br>
+                  Dans cette étape, nous étudierons le processus d’accès et de traitement des modèles sans pour autant créer et se connecter à une base de données.</p>
+                <p>L’objectif est de comprendre comment fonctionne le transfert des données du modèle à la vue.<br>
+                  Comme dans un framework M.V.C., nous allons utiliser les tableaux associatifs nous permettant d’effectuer ce transfert.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Modification de la classe «Load»</a></h3>
+                <p>En premier,<br>
+                  nous allons créer un modèle (<code class="language-php">SectionsModel</code>) qui contiendra seulement une classe avec un constructeur renvoyant un message.</p>
+                <p>Ensuite, nous ajoutons la méthode «&nbsp;<code class="language-php">model</code>&nbsp;» dans la classe «&nbsp;<code
+
+                    class="language-php">Load</code>&nbsp;» qui nous permettra de récupérer le modèle et de retourner un objet.</p>
+                <pre><code class="language-php line-numbers">public function model($modelName)
+{
+	require 'app/model/' . $modelName . '.php';
+	return new $modelName();
+};</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Sur le contrôleur Index</a></h3>
+                <p>Nous ajoutons la méthode <code class="language-php">sections()</code> qui chargera le modèle et invoquera la méthode <code
+
+                    class="language-php">sectionsList()</code> sur l’objet retourné de la classe <code
+
+                    class="language-php">Load</code>.<br>
+                  <code class="language-php">$sectionsModel</code> est la ressource contenant le nom du modèle sous la forme d’un objet.</p>
+                <pre><code class="language-php line-numbers">public function sections ()
+{
+	$sectionsModel = $this-&gt;load-&gt;model('SectionsModel');
+	$sectionsModel -&gt; sectionsList();
+}</code></pre>
+                <p>La méthode <code class="language-php">sectionsList()</code> a été ajoutée au modèle. Elle affiche pour l’instant un simple message.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Récupérer les données depuis un modèle</a></h3>
+                <p>C’est une étape essentielle pour la suite. Comment récupérer les données provenant d’une base de données et les passer à la vue.<br>
+                  Symfony effectuait cette opération avec la méthode «&nbsp;<code
+
+                    class="language-php">render()</code> » et en passant en paramètres un tableau associatif.<br>
+                  Nous allons exactement faire la même chose ici.</p>
+                <p>Avant de nous connecter à une base de données, il est impératif de comprendre ce process.<br>
+                  L’exemple suivant va vous le permettre.</p>
+                <p>En premier, nous allons ajouter des données au dans la méthode <code
+
+                    class="language-php">sectionsList()</code> du modèle.<br>
+                  Ces données seront structurées sous la forme d’un tableau.<br>
+                  C’est ainsi que nous les récupérerons à partir de la base de données.<br>
+                  Sauf qu’il s’agira d’un tableau multi‑dimensionnel.<br>
+                </p>
+              </div>
+              <h2>Passer un tableau associatif à la vue</h2>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le modèle avec les données</a></h3>
+                <pre><code class="language-php line-numbers">public function sectionsList () {
+
+    $data = [
+        'Webdev' =&gt; '2 ans',
+        'Bac compta' =&gt; '4 ans',
+        'Bac informatique' =&gt; '4 ans',
+    ];
+    return $data;
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le contrôleur Index</a></h3>
+                Dans la méthode <code class="language-php">sections()</code> :<br>
+                <ol>
+                  <li>on load le modèle</li>
+                  <li>on invoque la méthode <code class="language-php">sectionList()</code> du modèle que l’on récupère dans une<br>
+                    variable de type <code class="language-php">array</code></li>
+                  <li>on passe cette variable dans la vue</li>
+                </ol>
+                <p></p>
+                <pre><code class="language-php line-numbers">public function sections() {
+
+    $sectionsModel = $this-&gt;load-&gt;model('SectionsModel');
+
+    $data = $sectionsModel-&gt;sectionsList();
+
+    $this-&gt;load-&gt;view('sections',$data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">La vue sections</a></h3>
+                <p>Ici, nous réalisons une simple boucle <code class="language-php">foreach()</code> pour parcourir les données du tableau <code
+
+                    class="language-php">$data</code>.</p>
+                <pre><code class="language-php line-numbers">echo '&lt;h2&gt;Vue des sections&lt;/h2&gt;';
+
+foreach($data as $key =&gt; $value)&nbsp; {
+
+    echo '&lt;p&gt;' . $key . ' ' . $value . '&lt;/p&gt;';
+}</code></pre>
+              </div>
+              <h2>Passer un tableau multi‑dimensionnel à la vue</h2>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Introduction</a></h3>
+                <p>En réalité les données récupérées de la base de données le sont sous la forme d’un tableau multi‑dimensionnel.<br>
+                  Nous allons comprendre ce fonctionnement à l’aide d’un tableau que nous créerons directement dans le modèle.</p>
+                <pre><code class="language-php line-numbers">public function sectionsList () {
+
+    $data = [
+        ['Bac info', '4 ans', 'supérieur'],
+        ['Webdev', '2 ans', 'supérieur'],
+        ['Tec informatique', '2 ans', 'secondaire supérieur']
+    ];
+    
+    return $data;
+}</code></pre>
+                <p>La méthode <code class="language-php">category()</code> du contrôleur Index est identique et seulement l’affichage des données dans la vue change quelque peu.</p>
+                <pre><code class="language-php line-numbers">&lt;h2&gt;Liste des catégories&lt;/h2&gt;
+                
+&lt;?php
+
+foreach($data as $key =&gt; $value) {
+
+    echo '&lt;p&gt;&lt;img src="../asset/img/categories/' . $value['image'] . '"class="min"&gt;'&nbsp; .&nbsp; '&nbsp; ' . $value['name'] . '&lt;/p&gt;';<br>
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Associer le tableau $data à une variable.</a></h3>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Créer des URL propres</a></h3>
+                <p>Pour éviter de devoir utiliser le paramètre <code class="language-php">?url=...</code> lors des accès aux contenus, nous allons mettre en place un système d’URL Rewriting dans un fichier <code
+
+                    class="language-php">.htaccess</code>.</p>
+                <p> Ce fichier particulier que nous allons placer à la racine du projet permet entre autre de protéger des fichiers et des dossiers, créer ses propres pages d’erreur, rediriger, réécrire les U.R.L....<br>
+                  Il s’agit d’un fichier de configuration d’Apache permettant d’indiquer certaines commandes et utile quand on n’a pas accès aux fichiers du serveur. </p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Contenu du .htaccess</a></h3>
+                <p> Ce fichier particulier que nous allons placer à la racine du projet permet entre autre de protéger des fichiers et des dossiers, créer ses propres pages d’erreur, rediriger, réécrire les U.R.L.... Il s’agit d’un fichier de configuration d’Apache permettant d’ indiquer certaines commandes et utile quand on n’a pas accès aux fichiers du serveur. </p>
+                <pre><code class="language-apacheconf line-numbers">Options -MultiViews
+# Activation du module de réécriture d'URL :
+# Merci Julien.
+
+# Activation du module de réécriture d'URL :
+RewriteEngine On
+
+#Les conditions négatives pour l’application de la règle<br>
+RewriteCond %{REQUEST_FILENAME} !-d
+# directory # Pash pro le's dossier's
+
+RewriteCond %{REQUEST_FILENAME} !-f
+# file # Pash pro le's fichier's
+
+RewriteCond %{REQUEST_FILENAME} !-l
+# link # Pash pro le's lien's
+
+# La règle
+RewriteRule ^([^?]*) index.php?url=$1 [L,QSA]
+# [drapeau] L : , QSA : remplace par l'U.R.L. tu rajoute derriere</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Principe de fonctionnement</a></h3>
+                <h4>Syntaxe<br>
+                  RewriteRule URL_a_réécrire URL_réécrite [drapeau]</h4>
+                <p>« RewriteRule » indique au serveur qu'on inscrit une nouvelle règle de réécriture.</p>
+                <p>Puis vient l'URL que l'on souhaite réécrire, c'est-à-dire l'URL propre et qui n'a donc<br>
+                  pas d'existence physique sur le serveur.</p>
+                <p>On inscrit ensuite l'URL sur laquelle doit être redirigée l'URL propre. Cette URL sera<br>
+                  cachée aux visiteurs et ils n'auront aucun moyen de la connaitre.</p>
+                <p>Enfin, on peut faire suivre la règle d'un ou plusieurs drapeaux.</p>
+                <p>Les expressions rationnelles sont utilisées pour la réécriture.</p>
+                <p>Le drapeau [QSA] oblige le serveur à combiner les paramètres à l'URL.</p>
+                <p>Le drapeau [L] Last qui signifie dernier stoppera le processus de réécriture à la fin de<br>
+                  l'instruction.</p>
+              </div>
+            </fieldset>
+          </section>
+          <!-- Saut de ligne. -->
+          <div style="page-break-before:always"></div>
+          <section>
+            <fieldset class="ui yellow inverted segment">
+              <h2 id="titleH2Etape01"> <a href="?#title-h2-table-of-contents">Etape 03 : La base de données</a></h2>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">DB - MVC</a></h3>
+                <p>Créez une base de données avec une seule table pour l’instant « category »</p>
+                <p><b>Attributs :</b></p>
+                <pre><code class="language-sql line-numbers">id (int, auto_increment, primary)<br>
+name (varchar 120)<br>
+image (varchar 120)</code></pre>
+                <p>Remplissez avec quelques catégories et utilisez les images fournies dans le dossier « category ».</p>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La connexion PDO</a></h3>
+                <p>Principe que nous connaissons parfaitement à ce stade.</p>
+                <p>Ajoutons une classe <code class="language-php">MainModel</code> dans « library » et une autre <code
+
+                    class="language-php">CategoriesModel</code> dans « model ». <code
+
+                    class="language-php">CategoriesModel</code> hérite de <code
+
+                    class="language-php">MainModel</code>.</p>
+                <p>Ajoutons aussi une classe <code class="language-php">Database</code> dans « library » qui permettra d’établir la connexion à la base de données alors que le <code
+
+                    class="language-php">mainModel</code> contiendra lui l’objet de connexion.</p>
+                <p>Enfin, nous devons créer la vue category pour l’affichage des données.</p>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La classe Database</a></h3>
+                <pre><code class="language-php line-numbers">class Database extends PDO // On hérite de la classe PDO
+{
+    // Data Source Name
+    private $dsn = 'mysql:dbname=mvc; host=localhost; charset=utf8';
+    private $user = 'root';
+    private $password = '';
+
+    public function __construct() {
+
+        // Constructeur de la classe PDO
+        parent::__construct($this-&gt;dsn, $this-&gt;user, $this-&gt;password);
+    }
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La classe MainModel</a></h3>
+                <pre><code class="language-php line-numbers">class MainModel {
+
+    protected $db;
+
+    public function __construct() {
+
+        try {
+            $this-&gt;db = new Database();
+            $this-&gt;db-&gt;setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        }
+
+        catch(PDOException $e) {
+            die ('Erreur: ' . $e-&gt;getMessage());
+        }
+    }
+}</code></pre>
+              </div>
+              <h2>Afficher toutes les catégories</h2>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">La classe categoriesModel</a></h3>
+                <pre><code class="language-php line-numbers">public function categories () :array {<br>
+    $sql = "SELECT * FROM category";<br>
+    $dbh = $this-&gt;db-&gt;prepare($sql);<br>
+    $dbh-&gt;execute();<br>
+    $result = $dbh-&gt;fetchAll(PDO::FETCH_ASSOC);<br>
+    return $result;<br>
+}</code></pre>
+                <p>On crée une requête de sélection.<br>
+                  Sur l’objet de connexion on invoque la méthode <code
+
+                    class="language-php">prepare()</code> de la classe PDO et on enregistre le résultat dans $dbh<br>
+                  On récupère toutes les données dans $result que l’on retourne</p>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Le contrôleur Index</a></h3>
+                <p>Nous allons ajouter une méthode <code class="language-php">category()</code> qui est quasi identique à la méthode <code
+
+                    class="language-php">sections()</code> du projet à l’étape 2.</p>
+                <pre><code class="language-php line-numbers">public function category() {
+
+    $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+
+    $data['categories'] = $categoriesModel-&gt;categories();
+
+    $this-&gt;load-&gt;view('category',$data);
+}</code></pre>
+                <p> Ici, j’associe le tableau <code class="language-php">$data[]</code> au nom categories.<br>
+                  Cela me permettra d’utiliser dans la vue <code class="language-php">$categories</code> et plus <code
+
+                    class="language-php">$data</code>.<br>
+                  Il faudra alors employer la fonction <code class="language-php">extract()</code> dans la méthode <code
+
+                    class="language-php">view()</code> de la classe <code
+
+                    class="language-php">Load</code>. </p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Méthode view de la classe Load</a></h3>
+                <pre><code class="language-php line-numbers">public function view($viewName, $data = null) {
+                
+    if (!is_null($data)) {
+    
+        extract($data);
+    }
+    require 'app/view/' . $viewName . '.php';
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La vue sections</a></h3>
+                <p>Très simple, elle ne contient réellement qu’une boucle permettant l’affichage des catégories.</p>
+                <pre><code class="language-php line-numbers">&lt;h2&gt;Liste des catégories&lt;/h2&gt;
+
+&lt;?php foreach($categories as $key =&gt; $value) {
+                    
+    echo '&lt;p&gt;' . $value['name'] . '&lt;/p&gt;';
+}<br></code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Refactoring du code</a></h3>
+                <p>Nous allons améliorer le rôle joué par le modèle <code
+
+                    class="language-php">CategoriesModel</code> et par la classe <code
+
+                    class="language-php">Database</code>.<br>
+                  Des requêtes de sélections nous allons en faire beaucoup tout au long du projet.<br>
+                  Il serait intéressant de créer une méthode <code class="language-php">select()</code> qui nous permettra d’interroger d’autres tables avec des conditions et des tris différents.<br>
+                  Ainsi la requête, la préparation, l’exécution et la récupération ne se feront qu’une seule fois pour tout le site.</p>
+                <p>Toutes ces requêtes génériques seront écrites dans des méthodes de la classe « Database » avec leur processus de traitement (<code
+
+                    class="language-php">prepare</code>, <code class="language-php">bindValue</code>, <code
+
+                    class="language-php">execute</code>,...).<br>
+                  Dans le modèle restera la méthode <code class="language-php">catégories()</code> qui aura pour unique fonction d’invoquer la requête et son traitement.</p>
+              </div>
+              <div class="ui segment">
+                <h3> <a href="?#title-h2-table-of-contents">La classe DataBase</a></h3>
+                <pre><code class="language-php line-numbers">public function select($table) {
+
+    $sql = "SELECT * FROM $table";
+    
+    $dbh = $this-&gt;prepare($sql);
+    
+    $dbh-&gt;execute();
+    
+    return $dbh-&gt;fetchAll(PDO::FETCH_ASSOC);
+}</code></pre>
+                <p> On ajoute la méthode <code class="language-php">select()</code> qui réalise le même traitement que la méthode <code
+
+                    class="language-php">categories()</code> du modèle.<br>
+                  Seulement ici, on constate vu qu’elle est détachée du modèle <code
+
+                    class="language-php">CategoriesModel</code> elle pourra être réutilisée pour d’autres modèles.<br>
+                  Il suffit tout simplement de passer le nom de la table en paramètre. </p>
+              </div>
+              <div class="ui segment">
+                <h3> <a href="?#title-h2-table-of-contents">Le modèle CategoriesModel</a> </h3>
+                <pre><code class="language-php line-numbers">public function categories():array {
+                
+    return $this-&gt;db-&gt;select('category');
+}</code></pre>
+                <p> Dans CategoriesModel, la méthode categories() applique la méthode select(&lt;category&gt;) sur l’objet de connexion.<br>
+                  En paramètre, on passe le nom de la table sur laquelle on va exécuter la requête.</p>
+                <p>En ce qui concerne la vue category, rien n’a changé. </p>
+              </div>
+              <h2 id="titleH2AfficherUneSeuleCatégorie"> <a href="?#title-h2-table-of-contents">Afficher une seule catégorie</a> </h2>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le contrôleur Index</a></h3>
+                <p> Pour l’instant nous allons ajouter une méthode <code
+
+                    class="language-php">catByid()</code> dans le contrôleur <code
+
+                    class="language-php">Index</code>.<br>
+                  Celles ci est similaire à la méthode <code class="language-php">category()</code> mais passera au modèle l’id de la catégorie à afficher.<br>
+                  Comme nous ne traitons pas encore le détail des vues (passage de paramètres) nous l’écrirons en dur dans une variable. </p>
+                <pre><code class="language-php line-numbers">public function catById() {
+                
+    $id = 2;
+    
+    $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+    
+    $data['catbyid'] = $categoriesModel-&gt;catByid($id);
+    
+    $this-&gt;load-&gt;view('catbyid', $data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3> <a href="?#title-h2-table-of-contents">La méthode catById() du modèle</a> </h3>
+                <p>Avant de généraliser les requêtes de sélection dans la classe Database nous allons réaliser tout le traitement directement dans le modèle. Une fois que nous aurons assimiler ce principe, nous modifierons la méthode select() de la classe pour qu’elle nous permette de faire n’importe quel type de select.</p>
+                <pre><code class="language-php line-numbers">public function catById($id) {
+
+    $sql = "SELECT * FROM category WHERE id = :id";
+
+    $result = $this-&gt;db-&gt;prepare($sql);
+
+    $result-&gt;bindParam(':id', $id);
+
+    $result-&gt;execute();
+
+    return $result-&gt;fetchAll(PDO::FETCH_ASSOC);
+
+    $this-&gt;load-&gt;view('catbyid', $data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3> <a href="?#title-h2-table-of-contents">La vue catbyid</a></h3>
+                <p> Comme on récupère un seul enregistrement, la boucle n’est pas nécessaire. L’ affiche de la catégorie pourra être effectué directement sur l’index 0 du tableau <code
+
+                    class="language-php">$catbyid</code>.</p>
+                <pre><code class="language-php line-numbers">&lt;h2&gt;Catégorie souhaitéé&lt;/h2&gt;
+                
+&lt;?php
+echo '&lt;p&gt;&lt;img src="../asset/img/categories/' . $catbyid[0]['image'] . ' "class="min"&gt;' . $catbyid[0]['name'] . '&lt;/p&gt;';</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Refactoring - étape 01</a></h3>
+                <p> <span class="texte-orange">Objectif:</span> permettre par la suite de réaliser les opérations C.R.U.D. sur n’importe quelle table à partir de la même requête.<br>
+                  Pour l’instant, le nom de la table est écrit en dur dans les requêtes de nos deux méthodes du modèle.<br>
+                  Ça ne pose pas de problème dans le code actuel mais pour éviter une redondance et permettre par la suite de réaliser un insert, un update ou encore un delete avec la même requête il est préférable de modifier le code maintenant.</p>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Le contrôleur Index</a></h3>
+                <pre><code class="language-php line-numbers">class Index extends MainController {
+                  
+    private $table = 'category';
+    ...
+    public function category()
+    {
+        $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+        
+        $data['categories'] = $categoriesModel-&gt;categories($this-&gt;table);
+        
+        $this-&gt;load-&gt;view('category', $data);
+    }
+    public function catById() {
+
+        $id = 3;
+
+        $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+
+        $data['catbyid'] = $categoriesModel-&gt;catByid($this-&gt;table, $id);
+
+        $this-&gt;load-&gt;view('catbyid', $data);
+    }
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Les méthodes du modèle</a></h3>
+                <pre><code class="language-php line-numbers">public function categories($table) {
+
+    $sql = "SELECT * FROM $table";
+    
+    return $this-&gt;db-&gt;select($sql);
+}</code></pre>
+                <pre><code class="language-php line-numbers">public function catById($table, $id) {
+    
+    $sql = "SELECT * FROM $table WHERE id = :id";
+
+    $condition = ['id' =&gt; $id];
+
+    return $this-&gt;db-&gt;select($sql, $condition);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">Refactoring - étape 02</a></h3>
+                <p><span class="texte-orange">Objectif :</span> utiliser la méthode <code
+
+                    class="language-php">select()</code> de la classe Database pour la sélection complète et la sélection par id.</p>
+                <p>La méthode <code class="language-php">catByid()</code> du modèle:</p>
+                <pre><code class="language-php line-numbers">public function catById($table, $id) {
+                
+    $sql = "SELECT * FROM $table WHERE id = :id";
+
+    $condition = ['id' =&gt; $id];
+
+    return $this-&gt;db-&gt;select($sql, $condition);
+}</code></pre>
+                <p>On passe à la méthode <code class="language-php">select()</code> en plus de la requête un tableau contenant la condition nécessaire pour effectuer le <code
+
+                    class="language-php">bindValue()</code>.</p>
+                <p>La méthode <code class="language-php">select()</code> refactorée :</p>
+                <pre><code class="language-php line-numbers">public function select($sql, $condition = null) {
+
+    $dbh = $this-&gt;prepare($sql);
+
+    if ($condition != null) {
+    
+        foreach($condition as $key=&gt;$value) {
+        
+            $dbh-&gt;bindParam($key, $value);
+        }
+    }
+    $dbh-&gt;execute();
+    
+    return $dbh-&gt;fetchAll(PDO::FETCH_ASSOC);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3><a href="?#title-h2-table-of-contents">L’autoloading</a></h3>
+                <p>Pour terminer l’étape 3, nous allons ajouter un système d’autoloading sur l’index du projet.<br>
+                  Nous constatons de nombreuses inclusions des fichiers (classes et fonctions) dans l’index.php.<br>
+                  Pour éviter cela, il suffit de mettre en place la fonction <code
+
+                    class="language-php">spl_autoload_register()</code> qui se chargera de la gestion des fichiers.</p>
+                <pre><code class="language-php line-numbers">spl_autoload_register(function($class) {
+                              
+    require_once 'library/' . $class . '.php';
+    }
+);</code></pre>
+                <br>
+                <p><img src="assets/img/structure_mvc_pdo.png" alt="Structure M.V.C. P.D.O."
+
+                    style="width: 100%; padding: 2em; border: gray solid 1px;"
+
+                    title="Structure M.V.C. P.D.O."></p>
+              </div>
+            </fieldset>
+          </section>
+          <!-- Saut de ligne. -->
+          <div style="page-break-before:always"></div>
+          <section>
+            <fieldset class="ui yellow inverted segment">
+              <h2 id="titleH2Etape01"> <a href="?#title-h2-table-of-contents">Etape 04 : C.R.U.D.<br>
+                  <small>Insertion</small></a></h2>
+              <h2> Insertion de données </h2>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Le contrôleur Index</a></h3>
+                <p> Commençons par ajouter la méthode <code class="language-php">insertCat()</code> dans le contrôleur Index. Pour l’instant, nous passerons les données en dur dans un tableau.</p>
+                <pre><code class="language-php line-numbers">public function insertCategory() {
+                
+    $data = [
+        'name' =&gt; 'Education',
+        'image' =&gt; 'default.png'
+    ];
+    
+    $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+    
+    $categoriesModel-&gt;insertCat($this-&gt;table, $data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Le modèle</a></h3>
+                <p>Ajoutons dans le modèle la méthode <code class="language-php">insertCat()</code> qui prend deux paramètres : le nom de la table et les données.<br>
+                  Sur l’objet de connexion on invoque la méthode <code
+
+                    class="language-php">insert()</code> de la classe Database.</p>
+                <pre><code class="language-php line-numbers">public function insertCat($table, $data) {
+
+    return $this-&gt;db-&gt;insert($table, $data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La classe Database</a></h3>
+                <p>Créons une méthode <code class="language-php">insert()</code> dans la classe.<br>
+                  Pour l’instant, elle se charge d’insérer les données provenant du tableau <code
+
+                    class="language-php">$data</code> et convenant pour la table catégorie.<br>
+                  Par la suite, nous la modifierons pour permettre l’insertion de données dans d’autres tables avec d’autres champs.</p>
+                <pre><code class="language-php line-numbers">public function insert ($table, $data) {
+                
+    $sql = "INSERT INTO $table (name, image) VALUES(:name, :image)";
+
+    $dbh = $this-&gt;prepare($sql);
+
+    $dbh-&gt;bindValue(':name', $data['name']);
+
+    $dbh-&gt;bindValue(':image', $data['image']);
+
+    return $dbh-&gt;execute();
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Rendre la méthode insert() dynamique</a></h3>
+                <pre><code class="language-php line-numbers">public function insert ($table, $data) {
+    $keys = implode(',', array_keys($data));
+
+    $values = ':' .implode(', :', array_keys($data));
+    
+    $sql = "INSERT INTO $table ($keys) VALUES($values)";
+    
+    $dbh = $this-&gt;prepare($sql);
+
+    foreach($data as $key =&gt; $value) {
+
+        $dbh-&gt;bindValue($key, $value);
+    }
+    return $dbh-&gt;execute();
+}</code></pre>
+                <ul>
+                  <li> Conversion des clés du tableau en chaîne de caractères.</li>
+                  <li>Utilisation de <code class="language-php">$keys</code> et <code
+
+                      class="language-php">$values</code> dans la requête.</li>
+                  <li>Boucle sur le <code class="language-php">bindValue()</code> en foncction du nombre de champs ($data).</li>
+                </ul>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Un formulaire pour ajouter des données</a></h3>
+                <pre><code class="language-html line-numbers">&lt;h2&gt;Ajouter une catégorie&lt;/h2&gt;
+                
+&lt;form action="http://localhost/projets/ieps/04-crud/index/insertcategory" method="post"&gt;
+
+    &lt;div class="form-group"&gt;
+    
+        &lt;label for="name"&gt;Nom&lt;/label&gt;
+        
+        &lt;input type="text" id="name" name="name" class="form-control"&gt;
+        
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+    
+        &lt;label for="image"&gt;Image&lt;/label&gt;
+        
+        &lt;input type="text" id="image" name="image" class="form-control"&gt;
+        
+    &lt;/div&gt;
+    
+    &lt;button type="submit" class="btn btn-raised btn-secondary"&gt;Ajouter&lt;/button&gt;
+    
+&lt;/form&gt;</code></pre>
+                <pre><code class="language-php line-numbers">public function insertCategory() {
+
+    $data = [
+    
+        'name' =&gt; $_POST['name'],
+        'image' =&gt; $_POST['image']
+    ];
+        
+    $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+
+    $categoriesModel-&gt;insertCat($this-&gt;table, $data);
+}</code></pre>
+                <pre><code class="language-php line-numbers">public function addcategory() {
+
+    $this-&gt;load-&gt;view('addcategory');
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Upload d’images</a></h3>
+                <p>Chaque catégorie étant associée à une image, nous allons ajouter la procédure d’upload de fichiers dans le formulaire et dans le traitement (classe Database).</p>
+                <p> Dans la vue (formulaire) ajoutons l’attribut enctype à la balise <code
+
+                    class="language-html">&lt;form&gt;</code> et modifions le type de la balise <code
+
+                    class="language-html">&lt;input&gt;</code>.</p>
+                <p>Dans le contrôleur Index, le tableau <code class="language-php">$data[]</code> doit récupérer le nom du fichier image.<br>
+                  Celui ci se trouve dans la variable globale <code class="language-php">$_FILES[]</code>.</p>
+                <pre><code class="language-php line-numbers">$data = [
+    'name' =&gt; $_POST['name'],
+    'image' =&gt; $_FILES['image']['name']
+];</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La méthode insertCategory()</a></h3>
+                <pre><code class="language-php line-numbers">public function insertCategory() {
+                
+    if (!empty($_FILES['image']['name'])) {
+    
+        $image = $_FILES['image']['name'];
+        
+        move_uploaded_file($_FILES['image']['tmp_name'], 'asset/img/categories/' . $image);
+        
+    } else {
+    
+        $image = 'default.png';
+        
+    }
+    $data = [
+    
+        'name' =&gt; $_POST['name'],
+        
+        'image' =&gt; $image
+    ];
+    
+    $categoriesModel = $this-&gt;load-&gt;model('CategoriesModel');
+    
+    $categoriesModel-&gt;insertCat($this-&gt;table, $data);
+
+    $this-&gt;load-&gt;view('addcategory');
+}</code></pre>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Les messages flash</a></h3>
+                <p>Après modification en base de données, il est important d’avertir l’utilisateur de la confirmation ou non de l’opération.<br>
+                  Nous allons mettre en place une gestion des messages.</p>
+                <pre><code class="language-php line-numbers">$result = $categoriesModel-&gt;insertCat($this-&gt;table, $data);
+                
+if ($result) {
+
+    $message['val'] = true;
+
+} else {
+
+    $message['val'] = false;
+}
+$this-&gt;load-&gt;view('addcategory',$message);</code></pre>
+                <p>Nous modifions la méthode insertCategory() du contrôleur afin de récupérer dans une variable ($result) l’exécution du traitement.<br>
+                  Si c’est ok, $result vaut 1 puis dans le test on stocke soit vrai ou faux dans le tableau $message.<br>
+                  Ce tableau est envoyé à la vue pour permettre d’afficher le message de confirmation ou pas.</p>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La vue addcategory</a></h3>
+                <pre><code class="language-php line-numbers">&lt;?php
+                
+if (isset ($val) &amp;&amp; $val == true) {
+                
+    echo '&lt;div class="alert alert-success" role="alert"&gt;Catégorie ajoutée&lt;/div&gt;';
+    
+} elseif (isset ($val)) {
+
+    echo '&lt;div class="alert alert-warning" role="alert"&gt;Problème lors de l\'ajout de la catégorie&lt;/div&gt;';
+}
+?&gt;
+...</code></pre>
+              </div>
+               <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"><a href="?#title-h2-table-of-contents">Le contrôleur Category</a></h3>
+                 <p>Jusqu’à présent, nous utilisions le contrôleur Index pour effectuer des traitement sur la table Category.<br>
+                   Il est plus judicieux de rassembler l’ensemble des opérations sur un contrôleur dédié aux catégories.</p>
+<p>Profitons en pour changer le nom de la méthode category() en categoryList().</p>
+                 <p>Noubliez pas de tester l’application sur base du contrôleur Category dans l’url.</p>
+<p>Enfin, modifiez l’attribut action du formulaire (vue) qui pointait vers Index.</p>
+               <pre><code class="language-php line-numbers">class Category extends MainController {
+               
+    private $table = 'category';
+
+    public function __construct() {
+
+        parent::__construct();
+    }
+    
+    public function categoryList() {
+    }
+
+    public function catById() {
+    }
+    
+    public function insertCategory() {
+    }
+    
+    public function addcategory() {
+    }
+}</code></pre>
+              </div>
+              <h2>La mise à jour des catégories</h2>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">L’update</a></h3>
+                <p>Le principe est assez similaire à l’insertion. Nous commençerons par des données en dur dans le contrôleur avant d’optimiser et d’ajouter une vue avec le formulaire.</p>
+<p>La nouvelle méthode update() de la classe Database ne sera pas non plus dans un premier temps adaptée à tous les types d’updates.</p>
+                <p>Il est préférable d’abord de s’arrurer du bon fonctionnement du processus avant de finaliser et d’optimiser le code.</p>
+        
+              </div>
+               <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Méthode update de la classe Database</a></h3>
+                 <pre><code class="language-php line-numbers">public function update($table, $data, $condition) {
+    
+    $sql = "UPDATE $table
+               SET name = :name, image = :image
+             WHERE $condition";
+
+    $dbh = $this->prepare($sql);
+
+    foreach($data as $key => $value) {
+
+        $dbh->bindValue($key, $value);
+    }
+    return $dbh->execute();
+}</code></pre>
+<p>$data et $condition sont directement fournie par le contrôleur Category.</p>
+              </div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La méthode updateCat() du contrôleur Category</a></h3>
+              <pre><code class="language-php line-numbers">public function updateCat() {
+
+    $condition = "id = 180";
+
+    $data = [
+
+        'name' => 'Test',
+        'image' => 'default.png'
+    ];
+    
+    $categoriesModel = $this->load->model('CategoriesModel');
+
+    $categoriesModel->catUpdate($this->table, $data, $condition);
+}</code></pre></div>
+              <div class="ui segment">
+                <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La méthode catUpdate du modèle CategoriesModel</a></h3>
+                <pre><code class="language-php line-numbers">public function catUpdate($table, $data, $condition) {
+    
+    return $this->db->update($table, $data, $condition);
+}</code></pre>
+              </div>
+              
+             <div class="ui segment">
+               <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Finaliser le processus d’upload</a></h3>
+              <p>Maintenant que l’upload fonctionne, nous allons terminer refactorer le code pour améliorer le principe&nbsp;:</p>
+               <ul>
+                 <li>Permettre à la méthode update() de la classe Database de réaliser n’importe
+quelle
+mise à jour.</li>
+                 <li>Ajouter un formulaire d’uptadate sans les données.</li>
+                 <li>Modifier le code du contrôleur Category.</li>
+                 <li>Ajouter les données à modifier dans le formulaire.</li>
+               </ul>
+              </div>
+              <div class="ui segment">
+               <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Méthode update() de Database</a></h3>
+                <pre><code class="language-php line-numbers">public function update($table, $data, $condition) {
+
+    $upkeys = '';
+
+    foreach($data as $key => $value) {
+
+        $upkeys .= "$key = :$key,";
+    }
+    $upkeys = rtrim($upkeys, ',');
+
+    $sql = "UPDATE $table
+               SET $upkeys
+             WHERE $condition";
+
+    $dbh = $this->prepare($sql);
+
+    foreach($data as $key => $value) {
+
+        $dbh->bindValue($key, $value);
+    }
+    return $dbh->execute();
+}</code></pre>
+              </div>
+              <div class="ui segment">
+               <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">La méthode updateCategory()</a></h3>
+                <p>Les données à modifier doivent être transmises à la vue pour être affichées dans le formulaire.<br>
+                  C’est le rôle de la méthode updateCategory.<br>
+                  Celle-ci est quasi identique à la méthode catById du même contrôleur.<br>
+                  L’id est en dur pour l’instant avant de pouvoir créer lesliens dans une vue générale (tableau admin par exemple)</p>
+                
+                <pre><code class="language-php line-numbers">public function updateCategory() {
+                
+    $id = 180;
+
+    $categoriesModel = $this->load->model('CategoriesModel');
+
+    $data['catbyid'] = $categoriesModel->catByid($this->table, $id);
+
+    $this->load->view('updatecategory', $data);
+}</code></pre>
+              </div>
+              <div class="ui segment">
+               <h3 id="titleHCaractéristiqueDUnFrameWork"> <a href="?#title-h2-table-of-contents">Le formulaire avec les données</a></h3>
+                <pre><code class="language-php line-numbers">&lt;form action="http://localhost/projets/ieps/04-crud02/category/updateCat" method="post"&gt;
+
+    &lt;?php foreach($catbyid as $value): ?&gt;
+
+        &lt;div class="form-group"&gt;
+
+            &lt;label for="name" &gt;Nom:&lt;/label&gt;
+            
+            &lt;input type="text" class="form-control" name="name" id="name" value="&lt;?= $value['name']; ?&gt;" required&gt;
+            
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+
+            &lt;label for="image"&gt;Image:&lt;/label&gt;
+
+            &lt;input type="file" class="form-control" name="image" id="image"&gt;
+
+        &lt;/div&gt;
+
+        &lt;input type="hidden" value="&lt;?= $value['id']; ?&gt;" name="id"&gt;
+
+    &lt;?php endforeach;?&gt;
+
+    &lt;button type="submit" class="btn btn-raised btn-secondary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+            </fieldset>
+          </section>
+        </section>
+        <!-- END PRINCIPAL CONTENT --> </article>
+    </main>
+    <footer id="footer">
+      <!-- Prism -->
+      <script src="assets/js/prism/prism.js"></script>
+      <!-- Prettify -->
+      <script src="assets/js/prettify/prettify.js"></script>
+      <!-- TocBot-->
+      <script src="assets/js/tocbot/tocbot.js"></script>
+      <script src="assets/js/tocbot/tocbot.init.js"></script>
+      <!-- Semantic UI -->
+      <script src="assets/PrameVorgs/semantic-ui-css-master/semantic.min.js"></script>
+      <!-- DataTables -->
+      <script src="assets/js/data_tables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+      <script src="assets/js/data_tables/DataTables-1.10.18/js/dataTables.semanticui.min.js"></script>
+      <!-- DataTables Personal -->
+      <script src="assets/js/Nemzag/data_tables-nemzag.js"></script>
+      <!-- Personal -->
+      <script src="assets/js/Nemzag/smoothscroll.js"></script> </footer>
+  </body>
+</html>
